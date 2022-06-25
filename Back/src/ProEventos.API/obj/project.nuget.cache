@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Fd1F8Zd5cdW6GDU7eadfrqVN0pGbLiih8Hr1S+pGj0+3LHkvMNujg87iZzvTdcgf1uUl5/FFQg11exOWh82iyw==",
+  "dgSpecHash": "Jmh63SInWu5rZLLMbOrUUuyickNImGtfbNqxHI5jaCCRNpC/tRQNNGUxqZXT/KhtJ+ngwhpJTFfsXEBbe7me3A==",
   "success": true,
   "projectFilePath": "C:\\Users\\Matheus\\Google Drive\\Prog\\ProEventos\\Back\\src\\ProEventos.API\\ProEventos.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Matheus\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\Matheus\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\5.0.3\\microsoft.aspnetcore.jsonpatch.5.0.3.nupkg.sha512",
+    "C:\\Users\\Matheus\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\5.0.3\\microsoft.aspnetcore.mvc.newtonsoftjson.5.0.3.nupkg.sha512",
     "C:\\Users\\Matheus\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Matheus\\.nuget\\packages\\microsoft.data.sqlite.core\\5.0.2\\microsoft.data.sqlite.core.5.0.2.nupkg.sha512",
     "C:\\Users\\Matheus\\.nuget\\packages\\microsoft.dotnet.platformabstractions\\3.1.6\\microsoft.dotnet.platformabstractions.3.1.6.nupkg.sha512",
@@ -28,6 +30,8 @@
     "C:\\Users\\Matheus\\.nuget\\packages\\microsoft.extensions.options\\5.0.0\\microsoft.extensions.options.5.0.0.nupkg.sha512",
     "C:\\Users\\Matheus\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
     "C:\\Users\\Matheus\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Matheus\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\Matheus\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "C:\\Users\\Matheus\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.0.4\\sqlitepclraw.bundle_e_sqlite3.2.0.4.nupkg.sha512",
     "C:\\Users\\Matheus\\.nuget\\packages\\sqlitepclraw.core\\2.0.4\\sqlitepclraw.core.2.0.4.nupkg.sha512",
     "C:\\Users\\Matheus\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.0.4\\sqlitepclraw.lib.e_sqlite3.2.0.4.nupkg.sha512",
