@@ -94,3 +94,5 @@ C:\Users\Matheus\Google Drive\Prog\ProEventos\Back\src\ProEventos.API\bin\Debug\
 C:\Users\Matheus\Google Drive\Prog\ProEventos\Back\src\ProEventos.API\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\Matheus\Google Drive\Prog\ProEventos\Back\src\ProEventos.API\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\Matheus\Google Drive\Prog\ProEventos\Back\src\ProEventos.API\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+C:\Users\Matheus\Google Drive\Prog\ProEventos\Back\src\ProEventos.API\bin\Debug\net5.0\AutoMapper.dll
+C:\Users\Matheus\Google Drive\Prog\ProEventos\Back\src\ProEventos.API\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
