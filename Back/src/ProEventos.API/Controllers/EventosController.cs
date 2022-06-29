@@ -31,7 +31,7 @@ namespace ProEventos.API.Controllers
                 var eventos = await _eventosService.GetAllEventosAsync(true);
                 if (eventos == null) return NoContent();
 
-                
+
 
                 return Ok(eventos);
             }
@@ -117,11 +117,12 @@ namespace ProEventos.API.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             try
-            {   var evento= await _eventosService.GetEventoByIdAsync(id);
+            {
+                var evento = await _eventosService.GetEventoByIdAsync(id);
                 if (evento == null) return NoContent();
 
                 if (await _eventosService.DeleteEvento(id))
-                    return Ok("Evento excluído");
+                    return Ok(new {message = "Deletado"});
                 else return BadRequest("Ocorreu um problema durante exclusão do evento");
             }
 

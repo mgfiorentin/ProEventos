@@ -20,10 +20,14 @@
       "es2018",
       "dom"
     ],
-
+    "noImplicitAny": false,
     "paths": {
-      "@app/*":["src/app/*"],
-      "@enviroments/*":["src/enviroments/*"]
+      "@app/*": [
+        "src/app/*"
+      ],
+      "@enviroments/*": [
+        "src/enviroments/*"
+      ]
     },
     "strictPropertyInitialization": false
   },
@@ -32,6 +36,5 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-
   }
 }

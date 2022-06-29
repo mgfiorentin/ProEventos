@@ -8,9 +8,9 @@ export class ValidatorField {
       const control = formGroup.controls[controlName];
       const matchingControl = formGroup.controls[matchingControlName];
 
-     /* if(matchingControl.errors && !matchingControl.errors.passDontMatch) {
+      if(matchingControl.errors && !matchingControl.errors.passDontMatch) {
         return null;
-      }*/
+      }
 
       if(control.value != matchingControl.value) {
         matchingControl.setErrors({passDontMatch: true});

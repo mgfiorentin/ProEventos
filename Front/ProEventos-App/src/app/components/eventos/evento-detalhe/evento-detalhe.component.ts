@@ -1,3 +1,4 @@
+import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -5,6 +6,12 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { Evento } from '@app/models/Evento';
+import { EventoService } from '@app/services/evento.service';
+import { BsLocaleService } from 'ngx-bootstrap/datepicker';
+import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-evento-detalhe',
@@ -13,14 +20,28 @@ import {
 })
 export class EventoDetalheComponent implements OnInit {
   form: FormGroup;
+  locale = 'pt-br';
+  evento = {} as Evento;
+  debug: any;
+  estadoSalvar: any = 'post';
 
-  get f(): any{
+  get f(): any {
     return this.form.controls;
   }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private localeService: BsLocaleService,
+    private router: ActivatedRoute,
+    private eventoService: EventoService,
+    private spinner: NgxSpinnerService,
+    private toastr: ToastrService
+  ) {
+    this.localeService.use(this.locale);
+  }
 
   ngOnInit() {
+    this.carregarEvento();
     this.validation();
   }
 
@@ -46,7 +67,60 @@ export class EventoDetalheComponent implements OnInit {
     });
   }
 
-  resetForm(): void{
+  resetForm(): void {
     this.form.reset();
+  }
+
+  public cssValidator(campoForm: FormControl): any {
+    return { 'is-invalid': campoForm.errors && campoForm.touched };
+  }
+
+  public carregarEvento(): void {
+    const eventoIdParam = this.router.snapshot.paramMap.get('id');
+
+    if (eventoIdParam != null) {
+      this.estadoSalvar = 'put';
+
+      this.eventoService.getEventoById(+eventoIdParam).subscribe({
+        next: (evento: Evento) => {
+          this.evento = { ...evento };
+          this.form.patchValue(this.evento);
+        },
+        error: (error: any) => {
+          console.error(error);
+          this.toastr.error('Erro ao carregar evento.', 'Erro!');
+          this.spinner.hide();
+        },
+        complete: () => {
+          this.spinner.hide();
+        },
+      });
+    }
+    this.spinner.hide();
+  }
+
+  public salvarAlteracao(): void {
+    this.spinner.show();
+
+    if (this.form.valid) {
+      this.evento =
+        this.estadoSalvar == 'post'
+          ? (this.evento = { ...this.form.value })
+          : (this.evento = { id: this.evento.id, ...this.form.value });
+
+      this.eventoService[this.estadoSalvar](this.evento).subscribe(
+        () => {
+          this.toastr.success('Evento salvo.', 'Sucesso!');
+        },
+        (error: any) => {
+          console.error(error);
+          this.spinner.hide();
+          this.toastr.error('Erro ao salvar evento.', 'Erro!');
+        },
+        () => {
+          this.spinner.hide();
+        }
+      );
+    }
   }
 }

@@ -1,4 +1,3 @@
-
 <div class="card rounded shadow-sm p-3">
   <div class="d-flex">
     <div class="flex-fill pr-3">
@@ -18,7 +17,7 @@
     <div>
       <a class="d-flex btn btn-outline-primary" routerLink="/eventos/detalhe">
         <i class="fa fa-plus-circle my-1"></i>
-        <b class="ml-1 d-none d-sm-block" >Novo</b>
+        <b class="ml-1 d-none d-sm-block">Novo</b>
       </a>
     </div>
   </div>
@@ -46,9 +45,14 @@
     </thead>
 
     <tbody *ngIf="eventos && eventos.length">
-      <tr *ngFor="let evento of eventosFiltrados" (click)="detalheEvento(evento.id)" style="cursor: pointer;">
+      <tr
+        *ngFor="let evento of eventosFiltrados"
+        (click)="detalheEvento(evento.id)"
+        style="cursor: pointer"
+      >
         <td>
-          <img  class="d-none d-lg-table-cell"
+          <img
+            class="d-none d-lg-table-cell"
             src="/assets/{{ evento.imageURL }}"
             [style.width.px]="widthImg"
             [style.margin.px]="marginImg"
@@ -59,14 +63,15 @@
         <td>{{ evento.id }}</td>
         <td>{{ evento.tema }}</td>
         <td class="d-none d-md-table-cell">{{ evento.local }}</td>
-        <td>{{ evento.dataEvento | DateTimeFormat }}</td>
+        <td>{{ evento.dataEvento | DateFormatPipe }}</td>
         <td class="d-none d-md-table-cell">{{ evento.qtdPessoas }}</td>
-        <td class="d-none d-md-table-cell">{{ evento.lotes[0].nome }}</td>
+        <td class="d-none d-md-table-cell">{{ evento.lotes[0]?.nome }}</td>
         <td>
-
-          <button class="btn btn-lg btn-danger"
+          <button
+            class="btn btn-lg btn-danger"
             tooltip="Excluir"
-            (click)="openModal(template)">
+            (click)="openModal($event, template, evento.id)"
+          >
             <i class="{{ 'fa fa-trash' }}"></i>
           </button>
         </td>
@@ -80,13 +85,12 @@
         </td>
       </tr>
     </tfoot>
-
   </table>
 </div>
 
 <ng-template #template>
   <div class="modal-body text-center">
-    <p>Deseja confirmar?</p>
+    <p>Deseja confirmar a exclusão do evento #{{this.eventoId}}?</p>
     <button type="button" class="btn btn-danger" (click)="confirm()">
       Sim
     </button>

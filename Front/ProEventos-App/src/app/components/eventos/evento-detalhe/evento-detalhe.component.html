@@ -1,7 +1,8 @@
 <div class="card rounded shadow-sm">
   <form [formGroup]="form">
-    <!--<p>Form value: {{form.value | json}}</p>
-    <p>Form value: {{form.status | json}}</p>-->
+    <!--<p>Form value: {{ form.value | json }}</p>
+    <p>Form value: {{ form.status | json }}</p>-->
+
     <div class="p-3">
       <div class="form-row">
         <div class="form-group col-md-12">
@@ -11,9 +12,7 @@
             class="form-control is-invalid"
             formControlName="tema"
             placeholder="Insira o Tema"
-            [ngClass]="{
-              'is-invalid': f.tema.errors && f.tema.touched
-            }"
+            [ngClass]="cssValidator(f.tema)"
           />
           <div *ngIf="f.tema.errors?.required" class="invalid-feedback">
             Tema é obrigatório.
@@ -30,9 +29,7 @@
         <div class="form-group col-md-8">
           <label>Local</label>
           <input
-            [ngClass]="{
-              'is-invalid': f.local.errors && f.local.touched
-            }"
+            [ngClass]="cssValidator(f.local)"
             type="text"
             class="form-control is-invalid"
             formControlName="local"
@@ -43,13 +40,19 @@
         <div class="form-group col-md-4">
           <label>Data e Hora</label>
           <input
-            [ngClass]="{
-              'is-invalid': f.dataEvento.errors && f.dataEvento.touched
-            }"
-            type="datetime"
+            [ngClass]="cssValidator(f.dataEvento)"
+            value="{{ evento.dataEvento | DateFormatPipe }}"
             class="form-control is-invalid"
             formControlName="dataEvento"
             placeholder=""
+            bsDatepicker
+            [bsConfig]="{
+              containerClass: 'theme-default',
+              isAnimated: true,
+              adaptivePosition: true,
+              showWeekNumbers:false,
+              dateInputFormat: 'DD/MM/YYYY hh:mm a'
+            }"
           />
           <div class="invalid-feedback">Data e hora são obrigatórios.</div>
         </div>
@@ -58,9 +61,7 @@
         <div class="form-group col-md-2">
           <label>Participantes</label>
           <input
-            [ngClass]="{
-              'is-invalid': f.qtdPessoas.errors && f.qtdPessoas.touched
-            }"
+            [ngClass]="cssValidator(f.qtdPessoas)"
             type="text"
             class="form-control is-invalid"
             formControlName="qtdPessoas"
@@ -79,9 +80,7 @@
         <div class="form-group col-md-2">
           <label>Telefone</label>
           <input
-            [ngClass]="{
-              'is-invalid': f.telefone.errors && f.telefone.touched
-            }"
+            [ngClass]="cssValidator(f.telefone)"
             type="text"
             class="form-control is-invalid"
             formControlName="telefone"
@@ -92,7 +91,7 @@
         <div class="form-group col-md-4">
           <label>E-mail</label>
           <input
-            [ngClass]="{ 'is-invalid': f.email.errors && f.email.touched }"
+            [ngClass]="cssValidator(f.email)"
             type="text"
             class="form-control is-invalid"
             formControlName="email"
@@ -108,9 +107,7 @@
         <div class="form-group col-md-4">
           <label>Imagem</label>
           <input
-            [ngClass]="{
-              'is-invalid': f.imageURL.errors && f.imageURL.touched
-            }"
+            [ngClass]="cssValidator(f.imageURL)"
             type="text"
             class="form-control is-invalid"
             formControlName="imageURL"
@@ -122,10 +119,13 @@
     </div>
     <div class="card-footer">
       <div class="d-flex">
-        <button (click)="resetForm()" class="btn btn-outline-secondary mr-auto border">
+        <button
+          (click)="resetForm()"
+          class="btn btn-outline-secondary mr-auto border"
+        >
           Cancelar Alteração
         </button>
-        <button class="btn btn-success" [disabled]="!form.valid">
+        <button class="btn btn-success" [disabled]="!form.valid" (click)="salvarAlteracao()">
           <!--  <span class="spinner-border spinner-border-sm mr-1"></span>>-->
           Salvar Evento
         </button>

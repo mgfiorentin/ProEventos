@@ -1,14 +1,18 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { TooltipModule } from "ngx-bootstrap/tooltip";
-import { BsDropdownModule } from "ngx-bootstrap/dropdown";
-import {CollapseModule} from 'ngx-bootstrap/collapse'
-import { ModalModule } from "ngx-bootstrap/modal";
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { defineLocale } from 'ngx-bootstrap/chronos';
+import { ptBrLocale } from 'ngx-bootstrap/locale';
+
 
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -29,39 +33,36 @@ import { UserComponent } from './components/user/user.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
 
-
 import { NavComponent } from './shared/nav/nav.component';
 
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
 import { animate } from '@angular/animations';
 
-
-
-
-
+defineLocale('pt-br', ptBrLocale);
 
 @NgModule({
   declarations: [
     AppComponent,
-      EventosComponent,
-      PalestrantesComponent,
-      NavComponent,
-      DateTimeFormatPipe,
-      TituloComponent,
-      PerfilComponent,
-      DashboardComponent,
-      ContatosComponent,
-      EventoDetalheComponent,
-      EventoListaComponent,
-      UserComponent,
-      LoginComponent,
-      RegistrationComponent
-   ],
+    EventosComponent,
+    PalestrantesComponent,
+    NavComponent,
+    DateTimeFormatPipe,
+    TituloComponent,
+    PerfilComponent,
+    DashboardComponent,
+    ContatosComponent,
+    EventoDetalheComponent,
+    EventoListaComponent,
+    UserComponent,
+    LoginComponent,
+    RegistrationComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    BsDatepickerModule.forRoot(),
     CollapseModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
@@ -73,13 +74,13 @@ import { animate } from '@angular/animations';
       timeOut: 5000,
       positionClass: 'toast-bottom-left',
       preventDuplicates: true,
-      progressBar:true,
-      progressAnimation:'decreasing'
-      }),
-      NgxSpinnerModule
+      progressBar: true,
+      progressAnimation: 'decreasing',
+    }),
+    NgxSpinnerModule,
   ],
   providers: [EventoService],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppModule { }
+export class AppModule {}
