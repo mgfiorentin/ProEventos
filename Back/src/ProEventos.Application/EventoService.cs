@@ -8,12 +8,12 @@ using ProEventos.Persistence.Contratos;
 
 namespace ProEventos.Application
 {
-    public class EventosService : IEventosService
+    public class EventoService : IEventoService
     {
         private readonly IEventoPersist _eventoPersist;
         private readonly IGeralPersist _geralPersist;
         private readonly IMapper _mapper;
-        public EventosService(IEventoPersist ePersist, IGeralPersist gPersist, IMapper mapper)
+        public EventoService(IEventoPersist ePersist, IGeralPersist gPersist, IMapper mapper)
         {
             _geralPersist = gPersist;
             _eventoPersist = ePersist;

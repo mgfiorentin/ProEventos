@@ -17,8 +17,8 @@ namespace ProEventos.API.Controllers
     public class EventosController : ControllerBase
     {
 
-        private readonly IEventosService _eventosService;
-        public EventosController(IEventosService service)
+        private readonly IEventoService _eventosService;
+        public EventosController(IEventoService service)
         {
             _eventosService = service;
         }
@@ -86,7 +86,7 @@ namespace ProEventos.API.Controllers
                 var obj = await _eventosService.AddEvento(model);
                 if (obj == null) return NoContent();
 
-                return Ok(model);
+                return Ok(obj);
             }
             catch (Exception e)
             {
@@ -103,7 +103,7 @@ namespace ProEventos.API.Controllers
             {
                 var obj = await _eventosService.UpdateEvento(id, model);
                 if (obj == null) return NoContent();
-                return Ok(model);
+                return Ok(obj);
             }
             catch (Exception e)
             {

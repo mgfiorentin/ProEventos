@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgxCurrencyModule } from 'ngx-currency';
 
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -18,6 +19,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { EventoService } from './services/evento.service';
+import { LoteService } from './services/lote.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -38,6 +40,8 @@ import { NavComponent } from './shared/nav/nav.component';
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
 import { animate } from '@angular/animations';
 
+
+
 defineLocale('pt-br', ptBrLocale);
 
 @NgModule({
@@ -56,6 +60,7 @@ defineLocale('pt-br', ptBrLocale);
     UserComponent,
     LoginComponent,
     RegistrationComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -78,8 +83,9 @@ defineLocale('pt-br', ptBrLocale);
       progressAnimation: 'decreasing',
     }),
     NgxSpinnerModule,
+    NgxCurrencyModule
   ],
-  providers: [EventoService],
+  providers: [EventoService, LoteService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
