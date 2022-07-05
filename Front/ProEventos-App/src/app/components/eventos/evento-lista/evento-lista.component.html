@@ -50,10 +50,9 @@
         (click)="detalheEvento(evento.id)"
         style="cursor: pointer"
       >
-        <td>
+        <td class="d-none d-md-table-cell">
           <img
-            class="d-none d-lg-table-cell"
-            src="/assets/{{ evento.imageURL }}"
+            [src]="mostraImagem(evento.imageURL)"
             [style.width.px]="widthImg"
             [style.margin.px]="marginImg"
             [collapse]="hideImg"

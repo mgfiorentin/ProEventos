@@ -18,6 +18,9 @@ using ProEventos.Application.Contratos;
 using ProEventos.Persistence.Contratos;
 using ProEventos.Application;
 using AutoMapper;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace ProEventos.API
 {
@@ -36,10 +39,10 @@ namespace ProEventos.API
             services.AddDbContext<ProEventosContext>(
                 context => context.UseSqlite(Configuration.GetConnectionString("Default"))
             );
-           
-            
+
+
             services.AddControllers().AddNewtonsoftJson(
-              x => x.SerializerSettings.ReferenceLoopHandling = 
+              x => x.SerializerSettings.ReferenceLoopHandling =
               Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -52,7 +55,7 @@ namespace ProEventos.API
 
 
             services.AddCors();
-            
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProEventos.API", Version = "v1" });
@@ -78,6 +81,12 @@ namespace ProEventos.API
             app.UseCors(x => x.AllowAnyHeader()
                               .AllowAnyMethod()
                               .AllowAnyOrigin());
+
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Resources")),
+                RequestPath = new PathString("/Resources")
+            });
 
             app.UseEndpoints(endpoints =>
             {
